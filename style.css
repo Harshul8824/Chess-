@@ -276,8 +276,7 @@ main{
     }
     
     .cell {
-        /* width: 42px; */
-        width: 20px;
+        width: 42px;
         height: 46px;
         display: flex;
         justify-content: center;
@@ -298,9 +297,18 @@ main{
         width: 90%;
         gap: 1rem;
      }
+     .time{
+        font-size: 1.4rem;
+     }
      .history{
         width: 60%;
         height: 30rem;
+     }
+     .wTurn{
+        font-size: 1.3rem;
+     }
+     .bTurn{
+        font-size: 1.3rem;
      }
      ul li{
         font-size: 1.2em;
