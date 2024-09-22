@@ -313,5 +313,11 @@ main{
      ul li{
         font-size: 1.2em;
      }
-
+     .replacePawn{
+        width: 90%;
+        gap: 1.5rem;
+     }
+     .winnerText{
+        padding-left: 10px;
+     }
 }
