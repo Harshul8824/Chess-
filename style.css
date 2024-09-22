@@ -4,6 +4,7 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
