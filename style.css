@@ -1,0 +1,299 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: start;
+    align-items:center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.chess-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.chessboard{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.cell {
+    width: 75px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5em;
+    /* font-weight:600; */
+    color: rgb(255, 255, 255);
+}
+.dark {
+    background-color: #769656;
+}
+.light {
+    background-color: #dedeab;
+}
+.replacePawn{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 4rem;
+    width: 30rem;
+    height: 10rem;
+    border: 2px solid gray;
+    background-color: beige;
+}
+.dispNone{
+    display: none;
+}
+.replace{
+display: flex;
+justify-content: center;
+align-items: center;
+border: 2px solid gray;
+width: 3.5rem;
+height: 3.5rem;
+background-color: rgb(255, 255, 255);
+font-size: 2rem;
+}
+.stopWatch{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   width: 10rem;
+   height: 20rem;
+   border-radius: 1rem;
+   overflow: hidden;
+   border: 2px solid black;
+   /* display: none; */
+}
+.bTurn,.wTurn{
+width: 100%;
+height: 6.3rem;
+background-color: rgba(130, 130, 130, 0.785);
+border: none;
+font-size: 1.4rem;
+}
+
+.time{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7.2rem;
+    font-size: 1.7rem;
+    background-color: rgba(255, 255, 0, 0.89);
+}
+.butt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.restart{
+    text-align: center;
+    padding-top: 5.5px;
+    width: 5.5rem;
+    height: 2.5rem;
+    background-color: rgb(206, 206, 202);
+   border: 2px solid rgb(115, 114, 114);
+}
+.history{
+    position: absolute;
+    right: 15px;
+    top: 4rem;
+    background-color: #cccccc;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 30%;
+    height: 40rem;
+    overflow: auto;
+    border: 2px solid #ccc;
+    display: none;
+    padding: 1px;
+}
+.history.disp{
+    display: block;
+}
+ul{
+display: flex;
+flex-direction: column;
+gap: 2px;
+list-style: none;
+padding: 3px;
+margin: 0;
+width: 100%;
+height: 91%;
+overflow-y:auto;
+}
+ul li{
+    font-size: 25px;
+    padding: 12px 8px 12px 2px;
+    width: 100%;
+        /* The user-select property in Cascading Style Sheets (CSS) controls whether a user can select text within an element. It can be used to prevent or allow users to highlight and copy content. For example, you can use it to prevent text from being selected when double-clicked in a web browser. */
+    user-select: none;
+    cursor: pointer;
+    position:relative;
+    border: 1px solid rgba(126, 123, 123, 0.296);
+    background-color: #cccccc33;
+    border-radius: 8px;
+}
+
+.history button{
+    width: 100%;
+    height: 2rem;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    color: white;
+}
+
+
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   width: 100%;
+   height: 3.5rem;
+   padding: 1rem;
+}
+.logo{
+    width: 3rem;
+    height: 2.5rem;
+}
+main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+}
+.equals{
+     width: 5.5rem;
+     height: 2.5rem;
+     background-color: rgb(206, 206, 202);
+    border: 2px solid rgb(115, 114, 114);
+}
+.setTime{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 20%;
+}
+/* slider css */
+.sliderDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.sliderDiv p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border: 2px solid gray;
+    background-color: #ffec73;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.slider{
+    appearance: none;
+    width: 50%;
+    height: 0.75rem;
+    cursor:pointer;
+    background-color: hsl(268, 47%, 21%);
+    border-radius: 1rem;
+    /* margin-top: 2rem; */
+    /* margin-bottom: 1.5rem; */
+    background-image: linear-gradient(hsl(285, 91%, 52%),hsl(285, 91%, 52%));
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb{
+    position: relative;
+    appearance: none;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: hsl(52, 100%, 62%);
+   cursor: pointer;
+   margin-top: -3px;
+   box-shadow: 0px 0px 20px 0px rgba(255, 229, 61, 0.50);
+   transition: all 100ms ease-in;
+}
+.slider:focus{
+    outline: 3px solid hsl(52, 100%, 62%);
+}
+.slider::-webkit-slider-thumb:hover{
+    outline: 2px solid hsl(52, 100%, 62%);
+    background-color: hsl(285, 91%, 52%);
+    box-shadow: 0px 0px 25px 5px rgba(255,229,61,0.80);
+}
+
+@media (max-width:938px) {
+    body{
+        gap: 5rem;
+    }
+    .chessboard{
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+    }
+    
+    .cell {
+        width: 50px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.8em;
+        color: rgb(255, 255, 255);
+    }
+    main{
+     flex-direction: column;
+     gap: 2rem;
+     }
+     .stopWatch{
+        flex-direction: row;
+        width: 95%;
+        height: 5rem;
+     }
+     .setTime{
+        width: 90%;
+        gap: 1rem;
+     }
+     .history{
+        width: 60%;
+        height: 30rem;
+     }
+     ul li{
+        font-size: 1.2em;
+     }
+
+}

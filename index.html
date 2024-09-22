@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chessboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="navBar">
+        <img  src="strategy.png" alt="img" class="logo">
+        <div class="butt">
+        <div class="restart" onclick="restart()">Restart</div>
+        <button class="equals " onclick="history()">History</button>
+    </div>
+    </div>
+    <main>
+    <!-- chessBody -->
+    <div class="chess-container">
+          <h1 class="winnerText"></h1>
+          <div class="replacePawn dispNone">
+            <div class="replace"></div>
+            <div class="replace"></div>
+            <div class="replace"></div>
+            <div class="replace"></div>
+          </div>
+        <div class="chessboard">
+            <!-- First row (Black Pieces) -->
+            <div class="cell dark">♜</div>
+            <div class="cell light">♞</div>
+            <div class="cell dark">♝</div>
+            <div class="cell light">♛</div>
+            <div class="cell dark">♚</div>
+            <div class="cell light">♝</div>
+            <div class="cell dark">♞</div>
+            <div class="cell light">♜</div>
+
+            <!-- Second row (Black Pawns) -->
+            <div class="cell light" data-piece="♟">♟</div>
+            <div class="cell dark">♟</div>
+            <div class="cell light">♟</div>
+            <div class="cell dark">♟</div>
+            <div class="cell light">♟</div>
+            <div class="cell dark">♟</div>
+            <div class="cell light">♟</div>
+            <div class="cell dark">♟</div>
+
+            <!-- Empty rows -->
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+            <div class="cell light"></div>
+            <div class="cell dark"></div>
+
+            <!-- White Pawns -->
+            <div class="cell dark">♙</div>
+            <div class="cell light">♙</div>
+            <div class="cell dark">♙</div>
+            <div class="cell light">♙</div>
+            <div class="cell dark">♙</div>
+            <div class="cell light">♙</div>
+            <div class="cell dark">♙</div>
+            <div class="cell light">♙</div>
+
+            <!-- White Pieces -->
+            <div class="cell light">♖</div>
+            <div class="cell dark black-piece">♘</div>
+            <div class="cell light">♗</div>
+            <div class="cell dark">♕</div>
+            <div class="cell light">♔</div>
+            <div class="cell dark">♗</div>
+            <div class="cell light">♘</div>
+            <div class="cell dark">♖</div>
+        </div>
+    </div>
+     <!-- stopWatch and slider  -->
+      <div class="setTime">
+      <div class="sliderDiv">
+        <p data-lengthNumber>0</p>
+        <input type="range" min="1" max="20" step="1" class="slider" data-lengthSlider> 
+      </div>
+    <div class="stopWatch">
+        <button class="bTurn">Black Turn</button>
+        <p class="time" onclick="stop()">00:00:000</p>
+        <button class="wTurn">White Turn</button>
+    </div>
+</div>
+   <!-- check History -->
+    <div class="history">
+        <ul class="listContainer">
+
+        </ul>
+        <button onclick="clrHistory()">Clear History</button>
+    </div>
+</main>
+
+    <script src="script.js"></script>
+</body>
+</html>
