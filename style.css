@@ -276,7 +276,8 @@ main{
     }
     
     .cell {
-        width: 42px;
+        /* width: 42px; */
+        width: 20px;
         height: 46px;
         display: flex;
         justify-content: center;
