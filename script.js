@@ -888,6 +888,8 @@ function updatexy(p, q) {
     q = q;
 }
 
-
+document.addEventListener('dblclick', function(e) {
+    e.preventDefault(); // Prevent default double-click behavior
+}, false);
 
 
