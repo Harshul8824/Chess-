@@ -751,6 +751,7 @@ function handleSlider(){
 inputSlider.addEventListener("input",(e)=>{
     passwordLength=e.target.value;
     handleSlider(); 
+     document.querySelector(".time").textContent = `${passwordLength}:00:000`;
 });
 
 //add js for stopwatch
@@ -759,7 +760,6 @@ let timer;
 let miliseconds = 0;
 let seconds = 0;
 let minutes = 0;
-let hours = 0;
 let isRunning = false;
 
 function start() {
@@ -781,8 +781,7 @@ function reset() {
     seconds = 0;
     minutes = 10;
     hours = 0;
-    document.querySelector(".time").textContent = '00:00:00:000';
-
+    document.querySelector(".time").textContent = '00:00:000';
 }
 let c=0;
 let w_min=9,w_sec=59,w_msec=1000;   

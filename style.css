@@ -3,13 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     cursor: pointer;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-
-/* for avoid copy  and search of pieces */
-        user-select: none; 
-        -webkit-user-select: none; 
-        -ms-user-select: none;
 }
 
 body {
@@ -19,7 +12,7 @@ body {
     justify-content: start;
     align-items:center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #bfbfbf;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 100%;
     height: 100%;
@@ -32,6 +25,7 @@ body {
     align-items: center;
     flex-direction: column;
     position: relative;
+    border: 1rem solid #4B2E14;
 }
 .chessboard{
     display: grid;
@@ -47,10 +41,9 @@ body {
     font-size: 3.5em;
     /* font-weight:600; */
     color: rgb(255, 255, 255);
-    outline: none;
 }
 .dark {
-    background-color: #769656;
+    background-color: #92673d;
 }
 .light {
     background-color: #dedeab;
@@ -85,7 +78,7 @@ font-size: 2rem;
    justify-content: space-between;
    align-items: center;
    width: 10rem;
-   height: 20rem;
+   height: 30rem;
    border-radius: 1rem;
    overflow: hidden;
    border: 2px solid black;
@@ -93,8 +86,8 @@ font-size: 2rem;
 }
 .bTurn,.wTurn{
 width: 100%;
-height: 6.3rem;
-background-color: rgba(130, 130, 130, 0.785);
+height: 11.3rem;
+background-color: #bab6b2;
 border: none;
 font-size: 1.4rem;
 }
@@ -106,7 +99,7 @@ font-size: 1.4rem;
     width: 100%;
     height: 7.2rem;
     font-size: 1.7rem;
-    background-color: rgba(255, 255, 0, 0.89);
+    background-color: rgba(117, 117, 110, 0.89);
 }
 .butt{
     display: flex;
@@ -222,8 +215,8 @@ main{
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    border: 2px solid gray;
-    background-color: #ffec73;
+    border: 2px solid rgb(96, 82, 82);
+    background-color: #ded9b4;
     border-radius: 50%;
     height: 2.5rem;
     width: 2.5rem;
@@ -234,11 +227,11 @@ main{
     width: 50%;
     height: 0.75rem;
     cursor:pointer;
-    background-color: hsl(268, 47%, 21%);
+    background-color: hsl(263, 3%, 48%);
     border-radius: 1rem;
     /* margin-top: 2rem; */
     /* margin-bottom: 1.5rem; */
-    background-image: linear-gradient(hsl(285, 91%, 52%),hsl(285, 91%, 52%));
+    background-image: linear-gradient(hsl(34, 87%, 18%),hsl(34, 84%, 18%));
     background-repeat: no-repeat;
     border: none;
     outline: none;
@@ -250,19 +243,19 @@ main{
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
-    background-color: hsl(52, 100%, 62%);
+    background-color: hsl(51, 36%, 71%);
    cursor: pointer;
    margin-top: -3px;
-   box-shadow: 0px 0px 20px 0px rgba(255, 229, 61, 0.50);
+   box-shadow: 0px 0px 20px 0px rgba(167, 155, 141, 0.5);
    transition: all 100ms ease-in;
 }
 .slider:focus{
-    outline: 3px solid hsl(52, 100%, 62%);
+    outline: 3px solid hsl(31, 75%, 30%);
 }
 .slider::-webkit-slider-thumb:hover{
-    outline: 2px solid hsl(52, 100%, 62%);
-    background-color: hsl(285, 91%, 52%);
-    box-shadow: 0px 0px 25px 5px rgba(255,229,61,0.80);
+    outline: 2px solid hsl(37, 91%, 28%);
+    background-color: hsl(36, 75%, 34%);
+    box-shadow: 0px 0px 25px 5px rgba(143, 138, 105, 0.8);
 }
 
 @media (max-width:938px) {
@@ -270,14 +263,13 @@ main{
         gap: 5rem;
     }
     .chessboard{
-        padding: 1rem;
         display: grid;
         grid-template-columns: repeat(8, 1fr);
     }
     
     .cell {
-        width: 42px;
-        height: 46px;
+        width: 50px;
+        height: 55px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -290,34 +282,19 @@ main{
      }
      .stopWatch{
         flex-direction: row;
-        width: 100%;
-        height: 4rem;
+        width: 95%;
+        height: 5rem;
      }
      .setTime{
         width: 90%;
         gap: 1rem;
      }
-     .time{
-        font-size: 1.4rem;
-     }
      .history{
         width: 60%;
         height: 30rem;
      }
-     .wTurn{
-        font-size: 1.3rem;
-     }
-     .bTurn{
-        font-size: 1.3rem;
-     }
      ul li{
         font-size: 1.2em;
      }
-     .replacePawn{
-        width: 90%;
-        gap: 1.5rem;
-     }
-     .winnerText{
-        padding-left: 10px;
-     }
+
 }
