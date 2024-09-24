@@ -269,13 +269,16 @@ main{
         gap: 5rem;
     }
     .chessboard{
+        /* padding: 1rem; */
         display: grid;
         grid-template-columns: repeat(8, 1fr);
     }
-    
+    .chess-container{
+        border:10px solid #4B2E14;
+    }
     .cell {
-        width: 50px;
-        height: 55px;
+        width: 41px;
+        height: 46px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -288,19 +291,34 @@ main{
      }
      .stopWatch{
         flex-direction: row;
-        width: 95%;
-        height: 5rem;
+        width: 100%;
+        height: 4rem;
      }
      .setTime{
         width: 90%;
         gap: 1rem;
      }
+     .time{
+        font-size: 1.4rem;
+     }
      .history{
         width: 60%;
         height: 30rem;
      }
+     .wTurn{
+        font-size: 1.3rem;
+     }
+     .bTurn{
+        font-size: 1.3rem;
+     }
      ul li{
         font-size: 1.2em;
      }
-
+     .replacePawn{
+        width: 90%;
+        gap: 1.5rem;
+     }
+     .winnerText{
+        padding-left: 10px;
+     }
 }
