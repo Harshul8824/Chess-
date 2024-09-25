@@ -203,6 +203,10 @@ function movePieces() {
         }
     }
     if (box[arr[x][y]].innerHTML == "") removeBorder();
+    //for rotate the pieces
+    box.forEach(ele=>{
+       count==0? ele.classList.remove("rotate"):ele.classList.add("rotate");
+    });
 }
 
 
