@@ -169,6 +169,10 @@ function movePieces() {
         }
         count = count == 0 ? 1 : 0;  
     }
+//for rotate the pieces
+// box.forEach(ele=>{
+// count==1? ele.classList.add("rotate"):ele.classList.remove("rotate");
+    // });
     //logic for em passant property of pawn
     if(x==1 && border.innerHTML=="♟" && p==3){
           
@@ -203,10 +207,7 @@ function movePieces() {
         }
     }
     if (box[arr[x][y]].innerHTML == "") removeBorder();
-    //for rotate the pieces
-    box.forEach(ele=>{
-       count==0? ele.classList.remove("rotate"):ele.classList.add("rotate");
-    });
+  
 }
 
 
