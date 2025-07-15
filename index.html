@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!DOCTYPE html> <!--document type declaration => tells browser doc written in html5 -->
+<html lang="en"> <!--set doc lang-->
+<head>   <!--contains meta info used in SEO and uses to link CSS files-->
+    <meta charset="UTF-8">  <!--UTF-8(unified transformation format) character encoding supports most character-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--responsive design-->
     <title>Chessboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <div class="navBar">
-        
         <img  src="strategy.png" alt="img" class="logo">
         <div class="butt">
             <label class="switch1">
@@ -17,9 +18,11 @@
               </label>
         <div class="restart" onclick="restart()">Restart</div>
         <button class="equals " onclick="history()">History</button>
-    </div>  
+    </div> 
     </div>
+
     <main>
+    
     <!-- chessBody -->
     <div class="chess-container">
           <h1 class="winnerText"></h1>
@@ -108,18 +111,22 @@
             <div class="cell dark">♖</div>
         </div>
     </div>
+
      <!-- stopWatch and slider  -->
-      <div class="setTime">
+    <div class="setTime">
+
       <div class="sliderDiv">
         <p data-lengthNumber>0</p>
         <input type="range" min="1" max="20" step="1" class="slider" data-lengthSlider> 
       </div>
+      
     <div class="stopWatch">
         <button class="bTurn">Black Turn</button>
         <p class="time" onclick="stop()">00:00:000</p>
         <button class="wTurn">White Turn</button>
     </div>
 </div>
+
    <!-- check History -->
     <div class="history">
         <ul class="listContainer">
@@ -127,8 +134,9 @@
         </ul>
         <button onclick="clrHistory()">Clear History</button>
     </div>
+
 </main>
 
-    <script src="script.js"></script>
+   <script src="script.js"></script>
 </body>
 </html>

@@ -1,8 +1,13 @@
+let stopwatch = document.querySelector(".stopWatch");
 let box = document.querySelectorAll(".cell");
 let winner = document.querySelector(".winnerText");
 let replacePawn = document.querySelectorAll(".replace");
 let replacePawnBox = document.querySelector(".replacePawn")
-let stopwatch = document.querySelector(".stopWatch");
+
+let listContainer = document.querySelector(".listContainer");
+let butt=document.querySelector(".checkBox");
+let stopWatchBox=document.querySelector(".setTime"); 
+
 const inputSlider=document.querySelector("[data-lengthSlider]");
 const lengthDisplay=document.querySelector("[data-lengthNumber]");
 let time=document.querySelector(".time");
@@ -51,15 +56,16 @@ function findidx(v) {
         }
     }
 }
+
 // document.querySelector(".sliderDiv").style.display="1";
 function restart() {
-    location.reload();
-    stopwatch.style.pointerEvents = "auto";
-    box.forEach(div => {
-        div.style.pointerEvents = "auto";
-    });
-
+    location.reload();  //equivalent to click browser refresh button (reset all variable with there initial state)
+    // stopwatch.style.pointerEvents = "auto"; 
+    // box.forEach(div => {
+    //     div.style.pointerEvents = "auto";
+    // });
 }
+
 //taken v,vy for empassant property apply
 let va=0,vb=0;
 let vya,vyb;
@@ -868,12 +874,14 @@ document.querySelector(".bTurn").addEventListener("click", () => {
     historyBox(handleSlider()-w_min-1,60 - w_sec, 1000-w_msec);
 });
 
-let listContainer = document.querySelector(".listContainer");
+//perform work of add or remove disp in the history class
 
-function history() {
+function history() {  
     let hist = document.querySelector(".history");
-    hist.classList.toggle("disp");
+    hist.classList.toggle("disp"); //add or remove the disp class
 }
+
+//take min, sec, mili as a parameter and add this on list and append it to history container
 function historyBox(min, sec, mili) {
     //print the value of calculation in rigth screen
     let li = document.createElement("li");
@@ -882,33 +890,26 @@ function historyBox(min, sec, mili) {
     li.innerHTML = `${box[arr[p][q]].innerHTML} : ${min} : ${sec} : ${mili}`;
     listContainer.appendChild(li);
 }
+
+//clr all list element
 function clrHistory() {
     let ul = document.querySelector(".listContainer");
     ul.innerHTML = "";
 }
+
 // console.log(miliseconds);
 function updatexy(p, q) {
     p = p;
     q = q;
 }
 
+// Prevent default double-click behavior
 document.addEventListener('dblclick', function(e) {
-    e.preventDefault(); // Prevent default double-click behavior
+    e.preventDefault(); 
 }, false);
 
 
-//js for toggle button
-
-let butt=document.querySelector(".checkBox");
-let stopWatchBox=document.querySelector(".setTime");    
-let buttCounter=0;
+//js for toggle button  
 butt.addEventListener("click",()=>{
-    buttCounter=buttCounter==0? 1:0;
-    if(buttCounter==1){
-        stopWatchBox.classList.add('dispNone');
-    }
-    else{
-        stopWatchBox.classList.remove('dispNone');
-    }
-    console.log("whatup");
+    stopWatchBox.classList.toggle('dispNone')
 });
