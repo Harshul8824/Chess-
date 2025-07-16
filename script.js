@@ -27,6 +27,7 @@ function checkOurPieces(i, j) {
     }
     return true;
 }
+
 function checkOpponentPieces(i, j) {
     let pieceType = box[arr[i][j]].innerHTML;
     if (pieceType != "♟" && pieceType != "♝" && pieceType != "♜" && pieceType != "♞" && pieceType != "♛" && pieceType != "♚" && box[arr[i][j]].innerHTML != "") {
@@ -34,6 +35,7 @@ function checkOpponentPieces(i, j) {
     }
     return true;
 }
+
 function matrix() {
     for (let i = 0; i < 8; i++) {
         let row = [];
@@ -45,6 +47,7 @@ function matrix() {
 
     console.log(arr);
 }
+
 function findidx(v) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -57,9 +60,9 @@ function findidx(v) {
     }
 }
 
-// document.querySelector(".sliderDiv").style.display="1";
+ //equivalent to click browser refresh button (reset all variable with there initial state)
 function restart() {
-    location.reload();  //equivalent to click browser refresh button (reset all variable with there initial state)
+    location.reload(); 
     // stopwatch.style.pointerEvents = "auto"; 
     // box.forEach(div => {
     //     div.style.pointerEvents = "auto";
@@ -698,16 +701,6 @@ function blackKing(p, q, index) {
     a2 = [];
 }
 
-// function removeBorder(){
-//   for(let i=0;i<8;i++){
-//     for(let j=0;j<8;j++){
-//       let b=box[arr[i][j]].style.border;
-//       if(b=="2px solid red" || b=="2px solid black"){
-//         box[arr[i][j]].style.border="none"
-//       }
-//     }
-//   }
-// }
 function checkKing(a) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -730,6 +723,7 @@ function piecesCss() {
         }
     }
 }
+
 // console.log(box[0].style.color="white")
 changePawn();
 function changePawn() {
@@ -759,6 +753,7 @@ function handleSlider(){
     inputSlider.style.backgroundSize = ((passwordLength-min)*100/(max-min))+ "% 100%"
     return passwordLength;
 }
+
 inputSlider.addEventListener("input",(e)=>{
     passwordLength=e.target.value;
     handleSlider(); 
@@ -766,44 +761,39 @@ inputSlider.addEventListener("input",(e)=>{
 });
 
 //add js for stopwatch
-let m = 0, s = 0, ms = 0;
+
 let timer;
-let miliseconds = 0;
-let seconds = 0;
-let minutes = 0;
-let isRunning = false;
-
-function start() {
-    reset();
-    if (!isRunning) {
-        isRunning = true;
-        timer = setInterval(updateTime, 10);
+let cnt = 1;
+function start(whiteTurn) {
+        reset();
+        timer = setInterval(()=>updateTime(whiteTurn), 10);  //call updateTime in every 10 millisec and store the key timer so i stop it on using clearInterval
     }
-}
-
-function stop() {
-    isRunning = false;
-    clearInterval(timer);
-}
 
 function reset() {
-    stop();
-    miliseconds = 1000;
-    seconds = 0;
-    minutes = 10;
-    hours = 0;
+    clearInterval(timer); //used to stop a repeating action that was started with setInterval(). here timer is ID returned by setInterval()
     document.querySelector(".time").textContent = '00:00:000';
 }
-let c=0;
-let w_min=9,w_sec=59,w_msec=1000;   
-let  b_min=9,b_sec=59,b_msec=1000;
-let mw=1,mb=1;
-function updateTime() {
-    if(c==0){
+
+let w_min=9,w_sec=59,w_msec=999;   
+let  b_min=9,b_sec=59,b_msec=999;
+let mw=1,mb=1; //initialize with 1 bcause let handleslider is 10 then time start from 9 and so on
+
+//update the time displ in every 10 milisec
+function updateTime(whiteTurn) {
+    //stop timer if we click on this
+    time.addEventListener('click', () =>clearInterval(timer))  
+
+    let miliseconds;
+    let seconds;
+    let minutes;    
+
+    if(!whiteTurn){
+
         miliseconds=b_msec;
         seconds=b_sec;
         minutes=handleSlider()-mw;
-        if(minutes==0 && seconds==0 && miliseconds==10){
+
+        if(minutes==0 && seconds==0 && miliseconds<=10){
             winner.innerHTML = "Time Over! Winner is White Pieces";
             stopwatch.style.pointerEvents = "none";
             box.forEach(div => {
@@ -812,12 +802,16 @@ function updateTime() {
             time.innerHTML="♔ Win";
             return 0;
         }
+
     }
-  if(c==1){
+    
+    else{   //whiteTurn is true
+
     miliseconds=w_msec;
     seconds=w_sec;
     minutes=handleSlider()-mb;
-    if(minutes==0 && seconds==0 && miliseconds==10){
+
+    if(minutes==0 && seconds==0 && miliseconds<=10){
         winner.innerHTML = "Time Over! Winner is Black Pieces"; 
         stopwatch.style.pointerEvents = "none";
         box.forEach(div => {
@@ -826,56 +820,63 @@ function updateTime() {
         time.innerHTML="♚ Win";
         return 0;
     }
+
   }
+    //dec the time
     miliseconds -= 10;
-    if (miliseconds == 0) {
-        miliseconds = 1000;
+    if (miliseconds <= 0) {
+        miliseconds = 999;
         seconds--;
     }
     if (seconds < 0) {
         seconds = 59;
-        if(c==0) mw++;
-        if(c==1) mb++;
+
+        whiteTurn ? mw++ : mb++; //this will decrease the minute by defference this val from handleslider()
     }
- 
-     
 
-    document.querySelector(".time").textContent = formatTime(minutes, seconds, miliseconds);
-
-  if(c==0){
+// whiteTurn is false(black is click) black pieces time store in b_min,b_sec, b_msec
+  if(!whiteTurn){   
     b_min=minutes;
     b_sec=seconds;
     b_msec=miliseconds;
   }
-  if(c==1){
+
+// whiteTurn is true(white is click) white pieces time store in b_min,b_sec, b_msec
+  if(whiteTurn){    
     w_min=minutes;
     w_sec=seconds;
     w_msec=miliseconds;
   }
+
+//change the time on display in every 10msec
+document.querySelector(".time").textContent = formatTime(minutes, seconds, miliseconds);
+
 }
 
+//arrange time in right format and return it
 function formatTime(minutes, seconds, miliseconds) {
     return (
         (minutes < 10 ? '0' : '') + minutes + ':' +
         (seconds < 10 ? '0' : '') + seconds + ':' +
-        (miliseconds < 10 ? '00' : '') + miliseconds
+        (miliseconds < 10 ? '00' : (miliseconds < 100 ? '0' : '')) + miliseconds
     );
 }
+
 document.querySelector(".wTurn").addEventListener("click", () => {
+
     document.querySelector(".sliderDiv").style.display='none';
-    c=1;
-    start();
+    start(true);
     historyBox(handleSlider()-b_min-1, 60-b_sec, 1000-b_msec);
+
 });
+
 document.querySelector(".bTurn").addEventListener("click", () => {
     document.querySelector(".sliderDiv").style.display='none';
-    c=0;
-    start();
+    start(false);
     historyBox(handleSlider()-w_min-1,60 - w_sec, 1000-w_msec);
 });
 
-//perform work of add or remove disp in the history class
-
+//perform work to add or remove disp in the history class
 function history() {  
     let hist = document.querySelector(".history");
     hist.classList.toggle("disp"); //add or remove the disp class
