@@ -17,25 +17,11 @@ let p, q, a, b;
 let x, y;
 let count = 0;
 
-
+// console.log(box);
 piecesCss();
 matrix();
-function checkOurPieces(i, j) {
-    let pieceType = box[arr[i][j]].innerHTML;
-    if (pieceType != "♙" && pieceType != "♗" && pieceType != "♖" && pieceType != "♘" && pieceType != "♕" && pieceType != "♔" && box[arr[i][j]].innerHTML != "") {
-        return false;
-    }
-    return true;
-}
 
-function checkOpponentPieces(i, j) {
-    let pieceType = box[arr[i][j]].innerHTML;
-    if (pieceType != "♟" && pieceType != "♝" && pieceType != "♜" && pieceType != "♞" && pieceType != "♛" && pieceType != "♚" && box[arr[i][j]].innerHTML != "") {
-        return false;
-    }
-    return true;
-}
-
+//2d vector store the idx of cells
 function matrix() {
     for (let i = 0; i < 8; i++) {
         let row = [];
@@ -44,10 +30,28 @@ function matrix() {
         }
         arr.push(row);
     }
-
     console.log(arr);
 }
 
+//check the white piece present on idx or not
+function checkOurPieces(i, j) {
+    let pieceType = box[arr[i][j]].innerHTML;
+    if (pieceType != "♙" && pieceType != "♗" && pieceType != "♖" && pieceType != "♘" && pieceType != "♕" && pieceType != "♔" && box[arr[i][j]].innerHTML != "") {
+        return false;
+    }
+    return true;
+}
+
+//check the black piece present on idx or not
+function checkOpponentPieces(i, j) {
+    let pieceType = box[arr[i][j]].innerHTML;
+    if (pieceType != "♟" && pieceType != "♝" && pieceType != "♜" && pieceType != "♞" && pieceType != "♛" && pieceType != "♚" && box[arr[i][j]].innerHTML != "") {
+        return false;
+    }
+    return true;
+}
+
+//find coordinate (i,j) using cell idx
 function findidx(v) {
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
@@ -63,10 +67,6 @@ function findidx(v) {
  //equivalent to click browser refresh button (reset all variable with there initial state)
 function restart() {
     location.reload(); 
-    // stopwatch.style.pointerEvents = "auto"; 
-    // box.forEach(div => {
-    //     div.style.pointerEvents = "auto";
-    // });
 }
 
 //taken v,vy for empassant property apply
@@ -82,6 +82,8 @@ function movePieces() {
         x = p, y = q;
     }
     let border = box[arr[p][q]];
+
+    //red -> show the movement
     if (border.style.border == "2px solid red") {
         countera=0;
         counterb=0;
@@ -94,13 +96,15 @@ function movePieces() {
          if(box[arr[x][y]].innerHTML=="♟" && p==7){
         replacePawnBox.classList.remove("dispNone");
            changePawn();
-           }
+        }
 
         border.innerHTML = box[arr[x][y]].innerHTML;
         box[arr[x][y]].innerHTML = "";
         updatexy(p, q);
         count = count == 0 ? 1 : 0;
     }
+
+    //pieces capture color
     if (border.style.border == "2px solid black") {
         countera=0;
         counterb=0;
@@ -138,6 +142,8 @@ function movePieces() {
 
         count = count == 0 ? 1 : 0;
     }
+
+    //show the castling of rook and king
     if(border.style.border=="4px solid orange"){
         countera=0;
         counterb=0;
@@ -167,6 +173,8 @@ function movePieces() {
         }
         count = count == 0 ? 1 : 0;
     }
+
+    //blue -> heightlight the en passant rule
     if(border.style.border=="2px solid blue"){
         border.innerHTML = box[arr[x][y]].innerHTML;
         box[arr[x][y]].innerHTML = "";
@@ -178,10 +186,7 @@ function movePieces() {
         }
         count = count == 0 ? 1 : 0;  
     }
-//for rotate the pieces
-// box.forEach(ele=>{
-// count==1? ele.classList.add("rotate"):ele.classList.remove("rotate");
-    // });
+
     //logic for em passant property of pawn
     if(x==1 && border.innerHTML=="♟" && p==3){
           
@@ -216,7 +221,6 @@ function movePieces() {
         }
     }
     if (box[arr[x][y]].innerHTML == "") removeBorder();
-  
 }
 
 
@@ -322,14 +326,13 @@ function whitePawn(p, q, index) {
 
 
     if(p==3 && countera==1){
-        if(va==2 && box[arr[p-1][q-1]].innerHTML=="")  {
-            box[arr[p - 1][q - 1]].style.border = "2px solid blue";
-        }
+
+        if(va==2 && box[arr[p-1][q-1]].innerHTML=="")  box[arr[p - 1][q - 1]].style.border = "2px solid blue";
         if(va==1 && box[arr[p-1][q+1]].innerHTML=="")  box[arr[p - 1][q + 1]].style.border = "2px solid blue";
+
         if(va==3 && q==(vya-1))  box[arr[p - 1][q + 1]].style.border = "2px solid blue";
         if(va==3 && q==(vya+1))   box[arr[p - 1][q - 1]].style.border = "2px solid blue";
     }
-
 }
 
 
