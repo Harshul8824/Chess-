@@ -25,6 +25,14 @@ const userSchema = mongoose.Schema({
         minLength : [8, 'pass must at least 8 len'],
         select : false   // never returned in queries by default
     },
+    passwordConfirm : {
+      type : String,
+      required : [true, "confirm your password"],
+      validate : function (pass) {
+        return pass === this.password;
+      },
+      message : "Password are not same"
+    },
     username : {
         type : String,
         unique : true,
@@ -167,9 +175,15 @@ userSchema.index({username : 1});
 userSchema.index({role : 1});
 
 userSchema.pre('save', async function (next) {
+  //check pass is modified or not
     if(!this.isModified('password')) return next();
+
+  //if chng then encrypt this(with cost 12)
     this.password = await bcrypt.hash(this.password, 12);
     this.passwordChangedAt = Date.now();
+
+  //delete passwordConfirm field
+   this.passwordConfirm = undefined;
     next();
 });
 
